@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('LI STRONG').click(function(e) {
+        e.preventDefault(); // disable text selection
+        $(this).parent().find('EM').slideToggle();
+        return false; // disable text selection
+    });
+
+    $('#search').keyup(function(e) {
+        var s = $(this).val().trim();
+        if (s === '') {
+            $('#result LI').show();
+            return true;
+        }
+        $('#result LI:not(:contains(' + s + '))').hide();
+        $('#result LI:contains(' + s + ')').show();
+        return true;
+    });
+
+}); // end document ready
+</script>
+</head>
+<body>
+
+<div id="faq">
+    <p><label>Search</label><br />
+<input id="search" value="" size="30" /></p>
+<p>&nbsp;</p>
+<ul id="result">
+  <li><strong>How round is the Earth?</strong><br /><br /><em>
+  Very round.
+  <br /><br /></em></li>
+  <li><strong>How rectangular is paper?</strong><br /><br /><em>
+  Very rectangular.
+  <br /><br /></em></li>
+</ul>
+</div><!-- #faq -->
+</body>
+</html>
